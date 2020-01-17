@@ -1,0 +1,137 @@
+body{
+    background-color: white;
+    margin: 0;
+}
+
+* {
+ font-family: Arial;
+}
+
+.header{
+    padding: 15px;
+    margin-top: 15px;
+    background-color: white;
+}
+
+#headerlinks{
+    text-align: right;
+    padding: 0px 15px;
+    margin-top: 12px;
+    margin-bottom: 40px;
+}
+
+a + a {
+    margin-left: 25px;
+}
+
+#headerlogo{
+    text-align: left;
+    float: left;
+}
+
+#mainintro{
+    text-align: center;
+    font-size: 22px;
+}
+
+.alinhadocentro{
+    text-align: center;
+}
+
+.caixapurpbody{
+    padding: 50px 300px;
+    background-color: rgb(166, 94, 248);
+    height: 200px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+.caixawhitebody{
+    padding: 50px 300px;
+    background-color: white;
+    height: 200px;
+    color: black;
+    text-align: center;
+}
+
+#whitebodyreps{
+    padding: 50px 120px 180px 120px;
+    background-color: white;
+    height: 200px;
+    color: black;
+    text-align: center;
+}
+
+#whitebodyskills{
+    padding: 50px 10px 320px 10px;
+    background-color: white;
+    height: 200px;
+    color: black;
+    text-align: center;
+}
+
+#purpbodyreps{
+    padding: 50px 120px 240px 120px;
+    background-color: rgb(166, 94, 248);
+    height: 200px;
+    color: white;
+    text-align: center;
+}
+
+#purpbodyprojects{
+    padding: 50px 120px 500px 120px;
+    background-color: rgb(166, 94, 248);
+    height: 200px;
+    color: white;
+    text-align: center;
+}
+
+#purpbodycontact{
+    padding: 30px 150px 140px 150px;
+    background-color: rgb(166, 94, 248);
+    height: 200px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+.footerclass{
+    background-color: black;
+    padding: 50px;
+    margin: 0;
+    color: rgb(166, 94, 248);
+    font-size: 14px;
+    text-align: center;
+}
+
+a:link, a:visited {
+    color: rgb(166, 94, 248);
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+a:link:active, a:visited:active {
+    color: rgb(166, 94, 248);
+      text-decoration: none;
+  }
+
+#indextable{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 50px 0;
+}
+
+th{
+    font-size: 30px;
+}
+
+td {
+    padding: 20px 10px;
+}
+
+#msgid {
+    width: 800px;
+    height: 120px;
+}
