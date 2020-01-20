@@ -35,7 +35,9 @@ div>p:first-child {
 }
 
 div img {
-    background: black;
+    background: white;
+    width: 30px;
+    height: 30px;
 }
 
 .botao-amarelo {
@@ -48,7 +50,7 @@ div img {
 }
 
 .botao-amarelo:hover {
-    background-color: #c44f00;
+    background-color: #d8933a;
 }
 
 .container {
@@ -67,9 +69,12 @@ div img {
   *
   **/
 
-#container-de-descricao {
+.containerazul {
+    height: 300px;
+    text-align: center;
     background-color: #2274a5;
     color: white;
+    padding: 200px 0px 0px 0px;
 }
 
 #container-de-descricao>ol {
@@ -85,6 +90,11 @@ div img {
     padding: 100px 0;
     font-size: 60px;
 }
+
+li {
+    display: list-item;
+    list-style-position: inside;
+  }
 
 
 /**
@@ -102,6 +112,7 @@ table {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 td button {
@@ -113,7 +124,7 @@ td button {
 }
 
 td button:hover {
-    background-color: #c4ad31;
+    background-color: #e7ce5b;
 }
 
 .container-do-search {
@@ -137,8 +148,17 @@ td button:hover {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    margin: auto;
+    display: block;
 }
 
 #back-button:hover {
-    background-color: #635a3d
+    background-color: grey;
+}
+
+#searchbox {
+    border: 1px solid black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
 }
