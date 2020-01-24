@@ -1,0 +1,133 @@
+header {
+    background-color: orange;
+    text-align: left;
+    padding: 20px;
+}
+
+h2{
+    display: inline;
+    padding-right: 75%;
+}
+
+article{
+    padding: 15px;
+}
+
+footer{
+    background-color: black;
+    padding: 30px;
+    margin: 0;
+    color: rgb(166, 94, 248);
+    font-size: 14px;
+    text-align: center;
+}
+
+#videotitle{
+    display: grid;
+}
+
+#videoid{
+    display: grid;
+}
+
+
+.mainbox {
+    display: grid;
+    grid-template-columns: 1f 1f 1f 1f;
+    grid-template-rows: 1f 1f 1f 1f;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    row-gap: 10px;
+    column-gap: 10px;
+    width: vw;
+    height: vh;
+}
+
+#item1{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#item2{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#item3{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#item4{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#item5{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+#item6{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+#item7{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+#item8{
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 3f 1f;
+    border: solid black;
+    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
