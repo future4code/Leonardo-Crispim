@@ -26,10 +26,7 @@ B) Apenas se o numero que fosse printado no console fosse igual a um dos numeros
 
 A)
 
-
-
 B) 
-
 
 */
 
