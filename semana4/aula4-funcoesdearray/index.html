@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+
+    <h2>
+      Controlador de Despesas
+    </h2>
+
+    <br>
+    <br>
+
+    <div id="ControladorBox">
+
+      <h4>Cadastrar Despesa</h4>
+  
+      Valor <input type="text" id="ValorDespesaID"> <br>
+
+      <br>
+  
+      Tipo (Casa, Viagem, Roles, Outros)
+      
+      <select>
+        <option value="DespesasCasa">Despesas de Casa</option>
+        <option value="DespesasViagem">Despesas de Viagem</option>
+        <option value="DespesasExtra">Despesas Extras</option>
+      <select> <br>
+  
+      Descricao <input type="text" id="DescricaoID"> <br>
+
+      <br>
+  
+      <button id="CadastrarButtonID" onclick="CadastrarButton()">Cadastrar Despesa</button>
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="DespesasBox">
+
+      <h4>Despesas Detalhadas</h4>
+  
+      Tipo (Casa, Viagem, Roles, Outros) <select></select> <br>
+
+      <br>
+  
+      Valor Minimo <input type="number" id="ValorMinID"> <br>
+
+      <br>
+
+      Valor Maximo <input type="number" id="ValorMaxID"> <br>
+
+      <br>
+  
+      <button id="FilterButtonID">Filtrar</button> <button id="CleanFiltersID">Limpar Filtros</button>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="ExtratoBox">
+
+      <h4>Extrato</h4>
+
+      <br>
+
+      <h3 id="TotalValueID">Valor Total:</h3>
+
+    </div>
+
+
+
+
+  </body>
+</html>
