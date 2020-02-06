@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+}
+
+Header{
+text-align: center;
+background-color: grey;
+padding: 20px;
+}
+
+#PostCentralizer{
+    text-align: center;
+}
+
+#PostContent{
+    Display: block;
+    height: 200px;
+    width: 400px;
+    margin-left: 34%;
+}
+
