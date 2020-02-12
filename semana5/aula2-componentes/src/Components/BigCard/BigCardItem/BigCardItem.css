@@ -1,0 +1,25 @@
+.BigCardItem{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 5fr;
+}
+
+.BigCardItem > img{
+    border-radius: 50%;
+    height: 65px;
+    width: 65px;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#divbox{
+    grid-column-start: 2;
+    margin-right: 5px;
+}
+
+#imagezz{
+    grid-column-start: 1;
+}
+

@@ -1,0 +1,10 @@
+.ImageButtonItem{
+align-items: center;
+justify-content: center;
+}
+
+.ImageButtonItem > img{
+    height: 40px;
+    width: 40px;
+}
+

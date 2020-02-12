@@ -1,0 +1,28 @@
+.SmallCardItem{
+    height: 70px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.SmallCardItem > img{
+    display: inline;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
+
+.SmallCardItem > h3{
+    display: inline;
+    margin-right: 5px;
+}
+
+.SmallCardItem > p{
+    display: inline;
+}
+
+#imagezz{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
