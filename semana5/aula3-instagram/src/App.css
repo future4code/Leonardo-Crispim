@@ -1,0 +1,15 @@
+.AppDiv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    margin: 0;
+    height: 1000px;
+}
+
+Header{
+    background-color: white;
+    height: 200px;
+    width: 100%;
+}
