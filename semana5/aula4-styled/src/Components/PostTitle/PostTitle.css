@@ -1,0 +1,28 @@
+#userthumbnailid{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+
+.PostTitle{
+    border-bottom: solid grey 1px;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h3{
+    display: inline;
+    margin-left: 10px;
+}
+
+hr{
+    width: 0px;
+    height: 10px;
+    display: inline;
+    color: black;
+    margin-right: 10px;
+}
