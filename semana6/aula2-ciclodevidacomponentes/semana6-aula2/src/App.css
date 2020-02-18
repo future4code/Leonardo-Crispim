@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+}
+
+#InputFieldID{
+  margin-right: 5px;
+}
+
+#FilterDivID{
+  margin-top: 15px;
+}
+
+#FilterTextID{
+  margin-right: 10px;
+}
