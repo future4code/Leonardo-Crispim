@@ -22,6 +22,7 @@ class App extends React.Component{
     this.state = {
       usertasktext: "",
       tasks: [],
+      currentfilter: "none"
     }
   }
 
@@ -38,6 +39,7 @@ class App extends React.Component{
     const updatedTasks = [
       ...this.state.tasks,
       {
+        id: Date.now(),
        name: newTaskItem,
        completed: false,
       }
@@ -47,11 +49,14 @@ class App extends React.Component{
       tasks: updatedTasks,
       usertasktext: ""
     })
+
+    localStorage.setItem("tasklist", JSON.stringify(this.state.tasks))
+
   }
 
-  completeTask = (name) => () => {
-    const updatedTasks = this.state.tasks.map((task) => {
-      if (task.name === name) {
+  completeTask = (id) => () => {
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id === id) {
         return {
           ...task,
           completed: !task.completed
@@ -62,6 +67,74 @@ class App extends React.Component{
     });
     
     this.setState({ tasks: updatedTasks });
+
+    localStorage.setItem("tasklist", JSON.stringify(updatedTasks))
+  }
+
+  mainListRender = () => {
+    if(this.state.currentfilter === "incomplete"){
+      return (this.filterListIncomplete())
+    }
+
+    else if(this.state.currentfilter === "completed"){
+      return (this.filterListComplete())
+    }
+
+    else{
+      return(
+        this.state.tasks.map(task => {
+          return(
+            <StyledLi onClick={this.completeTask(task.id)} completed={task.completed}>
+            {task.name}
+            </StyledLi>
+          )
+        })
+      )
+    }
+  }
+
+  filterListIncomplete = () => {
+    const filteredList = this.state.tasks.filter((task) =>{
+      return task.completed === false;
+    }).map( (task, index) => {
+      return(
+        <StyledLi onClick={this.completeTask(task.id)} completed={task.completed} key={index}>
+          {task.name}
+        </StyledLi>
+      );
+    });
+    return filteredList
+  }
+
+  filterListComplete = () => {
+    const filteredList = this.state.tasks.filter((task) =>{
+      return task.completed === true;
+    }).map( (task, index) => {
+      return(
+        <StyledLi onClick={this.completeTask(task.id)} completed={task.completed} key={index}>
+         {task.name}
+        </StyledLi>
+      );
+    })
+    return filteredList
+  }
+
+  onChangeFilter = (event) => {
+    const newFilter = event.target.value;
+
+    this.setState({
+      currentfilter: newFilter
+    })
+  }
+
+  loadData = () => {
+    const tasklistString = localStorage.getItem("tasklist")
+
+    const savedtasklist = JSON.parse(tasklistString)
+
+    this.setState({
+      tasks: savedtasklist
+    })
   }
 
   render(){
@@ -69,33 +142,23 @@ class App extends React.Component{
       <MainDiv>
         <h1>Lista de tarefas</h1>
   
-        <input id="InputFieldID" type="text" onChange={this.saveTaskText} value={this.state.usertasktext}></input> <button id="AddTaskButtonID" onClick={this.addTask}>Adicionar</button> <br />
+        <input id="InputFieldID" type="text" onChange={this.saveTaskText} value={this.state.usertasktext}></input> <button id="AddTaskButtonID" onClick={this.addTask}>Adicionar</button> <button onClick={this.loadData}>Carregar Dados</button> <br />
   
         <div id="FilterDivID">
   
           <span id="FilterTextID">Filtro</span>
   
-          <select id="FilterSelectID">
-            <option value="None">Nenhum</option>
-            <option value="Ongoing">Pendentes</option>
-            <option value="Completed">Completas</option>
+          <select id="FilterSelectID" onChange={this.onChangeFilter}>
+            <option value="none">Nenhum</option>
+            <option value="incomplete">Incompletas</option>
+            <option value="completed">Completas</option>
           </select>
   
         </div>
   
         <div id="TaskListDivID">
           <StyledUl id="TaskListID">
-            {
-              this.state.tasks.map(task => {
-                return(<StyledLi 
-                  onClick={this.completeTask(task.name)} 
-                  completed={task.completed}
-                >
-                  {task.name}
-                </StyledLi>
-                )}
-                )
-            }
+            {this.mainListRender()}
           </StyledUl>
         </div>
   
