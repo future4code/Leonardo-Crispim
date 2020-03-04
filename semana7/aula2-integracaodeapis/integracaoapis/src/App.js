@@ -14,6 +14,7 @@ class App extends React.Component{
     this.state ={
       showPage: 'cadastro',
       changePageText: 'Lista de Usuarios',
+      currentUserID: ''
     }
   }
 
@@ -36,10 +37,18 @@ class App extends React.Component{
     if(this.state.showPage === 'userdetails'){
       this.setState({
         showPage: 'listpage',
-        changePageText: 'Voltar'
+        changePageText: 'Pagina de Cadastro'
       })
     }
 
+  }
+
+  getUserID = (userID) => {
+    this.setState({
+      currentUserID: userID,
+      showPage: 'userdetails',
+      changePageText: 'Voltar',
+    })
   }
 
   render(){
@@ -50,11 +59,11 @@ class App extends React.Component{
     }
 
     if(this.state.showPage === 'listpage'){
-      currentPage = <ListPage />
+      currentPage = <ListPage getUserID={this.getUserID}/>
     }
 
     if(this.state.showPage === 'userdetails'){
-      currentPage = <UserDetailsPage />
+      currentPage = <UserDetailsPage userID={this.state.currentUserID}/>
     }
 
     return(
