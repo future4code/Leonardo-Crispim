@@ -56,21 +56,24 @@ class Cadastro extends React.Component{
 
   saveNewUser = () =>{
       const dataNewUser = {
-          name: this.state.userName
+          name: this.state.userName,
+          email: this.state.userEmail
       }
 
       const newUserPromise = axios.post(`${baseURL}/users/createUser`, dataNewUser, {
           headers: {
               'api-token': 'string'
           },
-          body: {
-              'name': 'string',
-              'email': 'string'
-          }
       })
 
       newUserPromise.then(response =>{
           alert("Usuario cadastrado com sucesso!")
+          this.setState({
+            nome: '',
+            email: ''
+          })
+      }).catch(error => {
+        alert(error)
       })
   }
 

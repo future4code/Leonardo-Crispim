@@ -13,6 +13,11 @@ const CustomList = styled.ul`
 const CustomLI = styled.li`
 `
 
+const DeleteButton = styled.button`
+color: red;
+margin-left: 5px;
+`
+
 class ListPage extends React.Component{
   constructor(props) {
     super(props);
@@ -42,6 +47,30 @@ class ListPage extends React.Component{
     })
   }
 
+  deleteOldUser = (olduserid, oldusername) =>{
+    const deleteConfirmation = window.confirm("Deseja mesmo deletar o usuario: " + oldusername + '?');
+
+    if (deleteConfirmation === true){
+      const request = axios.delete(`${baseURL}/users/deleteUser?id=${olduserid}`,{
+        headers: {
+          'api-token' : 'string',
+        }
+      })
+  
+      request.then((response) => {
+        this.showAllUsers()
+        alert("Usuario deletado com sucesso!");
+  
+      }).catch((error) => {
+        alert("Ocorreu um erro ao tentar deletar esse usuario.");
+      })
+    }
+  
+
+    else(console.log("Operacao cancelada com sucesso. (DELETE USER)"));
+   
+  }
+
   render(){
     return(
       <MainDiv>
@@ -49,7 +78,9 @@ class ListPage extends React.Component{
           <CustomList>
             { this.state.userList.length === 0 && <p>Carregando...</p>}
             { this.state.userList.map((user) => (
-                <CustomLI key={user.id}>{user.name}</CustomLI>
+                <CustomLI key={user.id}>{user.name}
+                <DeleteButton onClick={() => this.deleteOldUser(user.id, user.name)}>X</DeleteButton>
+                </CustomLI>
             )) }
           </CustomList>
       </MainDiv>
@@ -58,4 +89,4 @@ class ListPage extends React.Component{
 
 }
 
-export default ListPage;
+export default ListPage

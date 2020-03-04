@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Cadastro from './Cadastro';
 import ListPage from './ListPage';
+import UserDetailsPage from './UserDetailsPage';
 
 const MainDiv = styled.div`
 `
@@ -12,7 +13,7 @@ class App extends React.Component{
     super(props);
     this.state ={
       showPage: 'cadastro',
-      changePageText: 'Lista de Usuarios'
+      changePageText: 'Lista de Usuarios',
     }
   }
 
@@ -32,6 +33,13 @@ class App extends React.Component{
       })
     }
 
+    if(this.state.showPage === 'userdetails'){
+      this.setState({
+        showPage: 'listpage',
+        changePageText: 'Voltar'
+      })
+    }
+
   }
 
   render(){
@@ -43,6 +51,10 @@ class App extends React.Component{
 
     if(this.state.showPage === 'listpage'){
       currentPage = <ListPage />
+    }
+
+    if(this.state.showPage === 'userdetails'){
+      currentPage = <UserDetailsPage />
     }
 
     return(
