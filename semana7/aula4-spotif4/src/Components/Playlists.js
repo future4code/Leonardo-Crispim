@@ -71,12 +71,14 @@ class Playlists extends React.Component{
             <h2 onClick={this.getAllPlaylists}>Playlists Disponiveis:</h2>
                 <CC.PLGrid>
                     {this.state.playlistArray.map((playlist, index) =>(
+                      <div>
                         <CC.PLLink onClick={() => this.transferPlaylistID(playlist.id, playlist.name)} id={index}>
                             {playlist.name}
-                            <CC.DeletePLButton onClick={() => this.deleteCurrentPlaylist(playlist.id, playlist.name)} >
-                            X
-                            </CC.DeletePLButton>
                         </CC.PLLink>
+                        <CC.DeletePLButton onClick={() => this.deleteCurrentPlaylist(playlist.id, playlist.name)} >
+                        X
+                        </CC.DeletePLButton>
+                      </div>
                     ))}
                 </CC.PLGrid>
           </div>

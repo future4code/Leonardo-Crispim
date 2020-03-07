@@ -25,7 +25,7 @@ class PlaylistPage extends React.Component{
         })
         this.setState({
             songList: response.data.result.musics,
-            songsAvailable: response.data.quantity,
+            songsAvailable: response.data.result.quantity,
         })
     }
     catch(error){
@@ -47,18 +47,21 @@ class PlaylistPage extends React.Component{
     return(
         <CC.PLPageDiv>
             <h1>Playlist Atual:
-            {this.state.currentPlaylistName === '' && <span>Carregando...</span>}
-            {this.state.currentPlaylistName}
+            {' ' + this.state.currentPlaylistName === '' && <span>Carregando...</span>}
+            {' ' + this.state.currentPlaylistName}
             </h1>
 
             <h2>Musicas Disponiveis: 
-            {this.state.songsAvailable === '' && <span>Carregando...</span>}
-            {this.state.songsAvailable}
+            {' ' + this.state.songsAvailable === '' && <span>Carregando...</span>}
+            {' ' + this.state.songsAvailable}
             </h2>
 
             <CC.PLGrid>
                 {this.state.songList.map((song, index) =>(
-                    <span key={index}>{song.name}</span>
+                    <div>
+                        <p key={index}>{song.name}</p>
+                        <audio src={song.url} controls></audio>
+                    </div>
                 ))}
             </CC.PLGrid>
         </CC.PLPageDiv>

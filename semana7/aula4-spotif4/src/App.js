@@ -30,6 +30,10 @@ class App extends React.Component{
     this.refs.child.getAllPlaylists();
   }
 
+  triggerChildUpdateRender2(){
+    this.refs.child2.getPlaylistSongs();
+  }
+
   createNewPlaylist = async () =>{
     const dataNewPlaylist = {
       name: this.state.currentPlaylistName
@@ -74,7 +78,7 @@ class App extends React.Component{
     })
   }
 
-  handleSongURLhange = (event) =>{
+  handleSongURLChange = (event) =>{
     const newSongURL = event.target.value
     this.setState({
       songLink: newSongURL
@@ -89,7 +93,7 @@ class App extends React.Component{
       try{
         const dataNewSong ={
           playlistId: this.state.selectedPlaylistID,
-          Music:{
+          music:{
             name: this.state.songName,
             artist: this.state.songArtistName,
             url: this.state.songLink,
@@ -101,11 +105,23 @@ class App extends React.Component{
           }
         })
         alert("Musica adicionada com sucesso!")
+        this.triggerChildUpdateRender2();
+        this.setState({
+          songName: '',
+          songLink: '',
+          songArtistName: '',
+        })
       }
       catch(error){
         console.log(error)
       }
     }
+  }
+
+  changeToPlaylistsPage = () =>{
+    const changeVar = 'Playlists'
+
+    this.setState({renderingPage: changeVar})
   }
 
   render(){
@@ -116,7 +132,7 @@ class App extends React.Component{
     }
 
     else{
-      currentPage = <PlaylistPage playlistName={this.state.selectedPlaylistName} playlistID={this.state.selectedPlaylistID} />
+      currentPage = <PlaylistPage ref="child2" playlistName={this.state.selectedPlaylistName} playlistID={this.state.selectedPlaylistID} />
     }
 
     return(
@@ -140,13 +156,16 @@ class App extends React.Component{
         <div>
           <CC.NewSongDiv>
             <CC.PLPageHeaderText1>Adicione uma nova Musica!</CC.PLPageHeaderText1>
-            <span>Nome da Musica:</span>
-            <input onChange={this.handleSongNameChange}></input>
-            <span>Artista/Banda:</span>
-            <input onChange={this.handleBandNameChange}></input>
-            <span>URL:</span>
-            <input onChange={this.handleSongURLChange}></input>
-            <button onClick={this.addNewSongToPlaylist}>Adicionar Musica</button>
+              <CC.PLPageHeaderDiv>
+              <span>Nome da Musica:</span>
+              <input value={this.state.songName} onChange={this.handleSongNameChange}></input>
+              <span>Artista/Banda:</span>
+              <input value={this.state.songArtistName} onChange={this.handleBandNameChange}></input>
+              <span>URL:</span>
+              <input value={this.state.songLink} onChange={this.handleSongURLChange}></input>
+              <button onClick={this.addNewSongToPlaylist}>Adicionar Musica</button>
+              <CC.BackButton onClick={this.changeToPlaylistsPage}>Voltar</CC.BackButton>
+              </CC.PLPageHeaderDiv>
           </CC.NewSongDiv>
         </div>
         }

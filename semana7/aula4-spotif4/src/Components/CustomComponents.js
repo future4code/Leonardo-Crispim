@@ -26,9 +26,9 @@ export const FooterDiv = styled.div`
 `
 
 export const PLLink = styled.span`
-    display: block;
     margin-top: 15px;
     margin-bottom: 15px;
+    margin-right: 15px;
     font-size: 30px;
     text-decoration: underline;
 `
@@ -78,5 +78,16 @@ export const NewSongDiv = styled.div`
 `
 
 export const PLPageHeaderText1 = styled.span`
-margin-left: 10px;
+    margin-left: 10px;
+`
+
+export const PLPageHeaderDiv = styled.div`
+    display:flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+`
+
+export const BackButton = styled.button`
+    border-radius: 50px;
 `
