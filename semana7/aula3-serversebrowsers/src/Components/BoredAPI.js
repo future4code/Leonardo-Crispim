@@ -166,12 +166,17 @@ class BoredAPI extends React.Component{
   }
 
   getActivityByType = async () =>{
-    const response = await axios.get(
-    `http://www.boredapi.com/api/activity/?type=${this.state.currentType}`)
-
-    this.setState({
-        currentActivity: response.data
-    })
+    try{
+        const response = await axios.get(
+            `http://www.boredapi.com/api/activity/?type=${this.state.currentType}`)
+        
+            this.setState({
+                currentActivity: response.data
+            })
+    }
+    catch(error){
+        console.log(error)
+    }
   }
 
   getActivityByID = async () =>{
