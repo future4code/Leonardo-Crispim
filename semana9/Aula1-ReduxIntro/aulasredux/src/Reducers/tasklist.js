@@ -4,7 +4,7 @@ const initialState = {
     {
         id: new Date().getTime(),
         completed: false,
-        taskText: "Ola!"
+        text: "Ola!"
     }
   ],
 
@@ -26,6 +26,14 @@ const tasklist = (state = initialState, action) => {
                 }
             ]
       }
+      case "SET_TASKS":
+        return {
+          ...state,
+          tasklistarray: [...state.tasklistarray,
+          ...action.payload.tasks
+        ]
+        }
+      //-----
       case "DELETE_TASK_FROM_LIST":{
         const newState = state.tasklistarray.filter(task =>
           task.id !== action.payload.id)

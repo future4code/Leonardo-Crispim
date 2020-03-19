@@ -15,6 +15,7 @@ import { removeAllIncompleteTasks } from "../Actions/listActions";
 import { completeAllTasks } from "../Actions/listActions";
 import { incompleteAllTasks } from "../Actions/listActions";
 import { setFilter } from "../Actions/listActions";
+import { getTasks } from "../Actions/listActions";
 import Fab from "@material-ui/core/Fab";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
@@ -28,7 +29,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { ThemeConsumer } from 'styled-components';
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -85,7 +85,12 @@ class TaskList extends React.Component {
     this.props.callSetFilter(filter)
   }
 
+  componentDidMount(){
+    this.props.callGetTasks()
+  }
+
   render() {
+    console.log(this.props.tasks)
     return (
       <CS.AppMainDiv>
         <CS.TaskTitle>
@@ -124,7 +129,7 @@ class TaskList extends React.Component {
               }
             }).map(task => (
               <ListItem key={task.id} button>
-                <ListItemText primary={task.taskText} />
+                <ListItemText primary={task.text} />
                 <ListItemSecondaryAction>
                   <Checkbox color="primary" onClick={() => this.completeTask(task.id)} checked={task.completed} />
                   <Fab color="secondary" aria-label="Add" size="small" onClick={() => this.deleteTask(task.id)}>
@@ -219,6 +224,7 @@ const mapDispatchToProps = dispatch => {
     callCompleteAllTasks: () => dispatch(completeAllTasks()),
     callIncompleteAllTasks: () => dispatch(incompleteAllTasks()),
     callSetFilter: filter => dispatch(setFilter(filter)),
+    callGetTasks: () => dispatch(getTasks()),
   }
 }
 
