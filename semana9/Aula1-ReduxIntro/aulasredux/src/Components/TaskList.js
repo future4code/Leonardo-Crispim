@@ -8,7 +8,18 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import { addTaskToList } from "../Actions/listActions";
+import { deleteTaskFromList } from "../Actions/listActions";
+import { toggleTaskCompletion } from "../Actions/listActions";
+import { removeAllCompletedTasks } from "../Actions/listActions";
+import { completeAllTasks } from "../Actions/listActions";
+import { setFilter } from "../Actions/listActions";
 import Fab from "@material-ui/core/Fab";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -33,8 +44,28 @@ class TaskList extends React.Component {
     }
   }
 
-  deleteTask = () =>{
-    
+  deleteTask = (id) => {
+    this.props.callDeleteTaskFromList(id)
+  }
+
+  completeTask = (id) => {
+    this.props.callToggleTaskCompletion(id)
+  }
+
+  checkList = () => {
+    console.log(this.props.tasks)
+  }
+
+  removeAllCompletedTasks = () => {
+    this.props.callRemoveAllCompletedTasks()
+  }
+
+  completeAllTasks = () =>{
+    this.props.callCompleteAllTasks()
+  }
+
+  setFilter = (filter) =>{
+    this.props.callSetFilter(filter)
   }
 
   render() {
@@ -63,17 +94,50 @@ class TaskList extends React.Component {
           />
 
           <List>
-            {this.props.tasks.map(task => (
+            {this.props.tasks.filter((task) =>{
+              const filter = this.props.filter
+              if(filter === 'completed')   return task.completed === true
+              if(filter === 'incompleted') return task.completed === false
+              return true;
+            }).map(task => (
               <ListItem key={task.id} button>
                 <ListItemText primary={task.taskText} />
                 <ListItemSecondaryAction>
-                  <Checkbox color="primary" />
-                  <Fab color="secondary" aria-label="Add" size="small" onClick={this.testFunction}>
+                  <Checkbox color="primary" onClick={() => this.completeTask(task.id)} checked={task.completed} />
+                  <Fab color="secondary" aria-label="Add" size="small" onClick={() => this.deleteTask(task.id)}>
                     X
                   </Fab>
                 </ListItemSecondaryAction>
               </ListItem>
             ))}
+
+            <Button variant="contained" color="primary" size="small" onClick={this.completeAllTasks}>
+              Marcar Todas As Tarefas Completas
+              <CheckCircleIcon/>
+            </Button>
+
+            <Button variant="contained" color="secondary" size="small" onClick={this.removeAllCompletedTasks}>
+              Remover Tarefas Completas
+              <DeleteIcon/>
+            </Button> <br></br>
+
+            <Button variant="contained" color="primary" size="small" onClick={() => this.setFilter('all')}>
+              Todas
+              <AssignmentIcon/>
+            </Button> <br></br>
+
+            <Button variant="contained" color="primary" size="small" onClick={() => this.setFilter('completed')}>
+              Completas
+              <AssignmentTurnedInIcon/>
+            </Button> <br></br>
+
+            <Button variant="contained" color="primary" size="small" onClick={() => this.setFilter('incomplete')}>
+              Incompletas
+              <AssignmentLateIcon/>
+            </Button> <br></br>
+
+            <button onClick={this.checkList}>Check List in Console</button>
+
           </List>
 
         </CS.TaskListArea>
@@ -85,13 +149,19 @@ class TaskList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tasks: state.tasklist,
+    tasks: state.tasklist.tasklist,
+    filter: state.tasklist.filter,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     callAddTaskToList: taskText => dispatch(addTaskToList(taskText)),
+    callDeleteTaskFromList: id => dispatch(deleteTaskFromList(id)),
+    callToggleTaskCompletion: id => dispatch(toggleTaskCompletion(id)),
+    callRemoveAllCompletedTasks: () => dispatch(removeAllCompletedTasks()),
+    callCompleteAllTasks: () => dispatch(completeAllTasks()),
+    callSetFilter: filter => dispatch(setFilter(filter)),
   }
 }
 

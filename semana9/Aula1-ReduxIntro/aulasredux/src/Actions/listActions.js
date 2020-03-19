@@ -25,34 +25,23 @@ export const addTaskToList = (taskText) => {
     };
   };
 
-  //stopped here
-
   export const removeAllCompletedTasks = () => {
     return {
-      type: "REMOVE_ALL_COMPLETED_TASKS"
+      type: "REMOVE_ALL_COMPLETED_TASKS",
     };
   };
   
-  export const toggleAllTasksCompletion = () => {
+  export const completeAllTasks = () => {
     return {
-      type: "TOGGLE_ALL_TASKS_COMPLETION",
+      type: "COMPLETE_ALL_TASKS",
     };
   };
   
-  export const filterCompletedTasks = () => {
+  export const setFilter = (filter) => {
     return {
-      type: "FILTER_COMPLETED_TASKS",
-    };
-  };
-  
-  export const filterIncompleteTasks = () => {
-    return {
-      type: "FILTER_INCOMPLETE_TASKS",
-    };
-  };
-  
-  export const filterAllTasks = () => {
-    return {
-      type: "FILTER_ALL_TASKS"
+      type: "SET_FILTER",
+      payload:{
+        filter: filter,
+      }
     };
   };
