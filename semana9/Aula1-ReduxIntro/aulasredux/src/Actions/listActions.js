@@ -30,10 +30,22 @@ export const addTaskToList = (taskText) => {
       type: "REMOVE_ALL_COMPLETED_TASKS",
     };
   };
+
+  export const removeAllIncompleteTasks = () => {
+    return {
+      type: "REMOVE_ALL_INCOMPLETE_TASKS",
+    };
+  };
   
   export const completeAllTasks = () => {
     return {
       type: "COMPLETE_ALL_TASKS",
+    };
+  };
+
+  export const incompleteAllTasks = () => {
+    return {
+      type: "INCOMPLETE_ALL_TASKS",
     };
   };
   

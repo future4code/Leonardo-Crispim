@@ -1,5 +1,5 @@
 const initialState = {
-  tasklist: 
+  tasklistarray: 
   [
     {
         id: new Date().getTime(),
@@ -15,23 +15,27 @@ const initialState = {
 
 const tasklist = (state = initialState, action) => {
     switch (action.type) {
-      case "ADD_TASK_TO_LIST":{
-        return [
-            ...state.tasklist,
-            {
-                id: new Date().getTime(),
-                completed: false,
-                taskText: action.payload.taskText,
-            }
-        ]
+      case "ADD_TASK_TO_LIST":
+        return {
+            ...state,
+            tasklistarray: [...state.tasklistarray,
+                {
+                    id: new Date().getTime(),
+                    completed: false,
+                    taskText: action.payload.taskText,
+                }
+            ]
       }
       case "DELETE_TASK_FROM_LIST":{
-        return state.tasklist.filter(task =>
-            task.id !== action.payload.id
-        )
+        const newState = state.tasklistarray.filter(task =>
+          task.id !== action.payload.id)
+          return{
+            ...state,
+            tasklistarray : newState
+          }
       }
       case "TOGGLE_TASK_COMPLETION":{
-         const newState = state.tasklist.map(task => {
+         const newState = state.tasklistarray.map(task => {
           if (task.id === action.payload.id) {
             return {
               ...task,
@@ -40,21 +44,52 @@ const tasklist = (state = initialState, action) => {
           }
           return task
         })
-        return newState
+        return {
+          ...state,
+          tasklistarray: newState
+        }
       }
       case "REMOVE_ALL_COMPLETED_TASKS":{
-        return state.tasklist.filter(task =>
+        const newState = state.tasklistarray.filter(task =>
           task.completed !== true
           )
+        return {
+          ...state,
+          tasklistarray: newState
+        }
+      }
+      case "REMOVE_ALL_INCOMPLETE_TASKS":{
+        const newState = state.tasklistarray.filter(task =>
+          task.completed !== false
+          )
+        return {
+          ...state,
+          tasklistarray: newState
+        }
       }
       case "COMPLETE_ALL_TASKS":{
-        const newState = state.tasklist.map(task => {
+        const newState = state.tasklistarray.map(task => {
           return {
             ...task,
             completed: true,
           }
         })
-        return newState
+        return{
+          ...state,
+          tasklistarray: newState
+        } 
+      }
+      case "INCOMPLETE_ALL_TASKS":{
+        const newState = state.tasklistarray.map(task => {
+          return {
+            ...task,
+            completed: false,
+          }
+        })
+        return{
+          ...state,
+          tasklistarray: newState
+        } 
       }
       case "SET_FILTER":{
         return{

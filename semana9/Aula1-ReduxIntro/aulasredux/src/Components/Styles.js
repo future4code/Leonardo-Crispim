@@ -28,3 +28,20 @@ export const TaskListArea = styled.div`
     background-color: white;
     padding: 10px 20px 5px 10px;
 `
+
+export const DashBoardOptions = styled.div`
+    margin: auto;
+    color: black;
+    display: grid;
+    grid-row-gap: 0px;
+`
+
+export const DashBoardTitle = styled.h3`
+    padding: 5px;
+    margin: 0;
+    color: black;
+`
+
+export const CheckListContainer = styled.div`
+    margin-top: 10px;
+`
