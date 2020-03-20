@@ -11,9 +11,6 @@ import { addTaskToList } from "../Actions/listActions";
 import { deleteTaskFromList } from "../Actions/listActions";
 import { toggleTaskCompletion } from "../Actions/listActions";
 import { removeAllCompletedTasks } from "../Actions/listActions";
-import { removeAllIncompleteTasks } from "../Actions/listActions";
-import { completeAllTasks } from "../Actions/listActions";
-import { incompleteAllTasks } from "../Actions/listActions";
 import { setFilter } from "../Actions/listActions";
 import { getTasks } from "../Actions/listActions";
 import Fab from "@material-ui/core/Fab";
@@ -69,18 +66,6 @@ class TaskList extends React.Component {
     this.props.callRemoveAllCompletedTasks()
   }
 
-  removeAllIncompleteTasks = () => {
-    this.props.callRemoveAllIncompleteTasks()
-  }
-
-  completeAllTasks = () => {
-    this.props.callCompleteAllTasks()
-  }
-
-  incompleteAllTasks = () => {
-    this.props.callIncompleteAllTasks()
-  }
-
   setFilter = (filter) => {
     this.props.callSetFilter(filter)
   }
@@ -119,10 +104,10 @@ class TaskList extends React.Component {
             {this.props.tasks.filter((task) => {
               const filter = this.props.filter
               if (filter === 'completed') {
-                return task.completed === true
+                return task.done === true
               }
               if (filter === 'incomplete') {
-                return task.completed === false
+                return task.done === false
               }
               if (filter === 'all') {
                 return true
@@ -131,7 +116,7 @@ class TaskList extends React.Component {
               <ListItem key={task.id} button>
                 <ListItemText primary={task.text} />
                 <ListItemSecondaryAction>
-                  <Checkbox color="primary" onClick={() => this.completeTask(task.id)} checked={task.completed} />
+                  <Checkbox color="primary" onClick={() => this.completeTask(task.id)} checked={task.done} />
                   <Fab color="secondary" aria-label="Add" size="small" onClick={() => this.deleteTask(task.id)}>
                     X
                   </Fab>
@@ -146,23 +131,8 @@ class TaskList extends React.Component {
               <ExpansionPanelDetails>
                   <CS.DashBoardOptions>
 
-                  <Button variant="contained" color="primary" size="small" onClick={this.completeAllTasks}>
-                    Marcar Todas As Tarefas Completas
-                    <CheckCircleIcon />
-                  </Button> <br />
-
-                  <Button variant="contained" color="primary" size="small" onClick={this.incompleteAllTasks}>
-                    Marcar Todas As Tarefas Incompletas
-                    <ErrorIcon />
-                  </Button> <br />
-
                   <Button variant="contained" color="secondary" size="small" onClick={this.removeAllCompletedTasks}>
                     Remover Tarefas Completas
-                    <DeleteIcon />
-                  </Button> <br />
-
-                  <Button variant="contained" color="secondary" size="small" onClick={this.removeAllIncompleteTasks}>
-                    Remover Tarefas Incompletas
                     <DeleteIcon />
                   </Button> <br />
 
@@ -220,9 +190,6 @@ const mapDispatchToProps = dispatch => {
     callDeleteTaskFromList: id => dispatch(deleteTaskFromList(id)),
     callToggleTaskCompletion: id => dispatch(toggleTaskCompletion(id)),
     callRemoveAllCompletedTasks: () => dispatch(removeAllCompletedTasks()),
-    callRemoveAllIncompleteTasks: () => dispatch(removeAllIncompleteTasks()),
-    callCompleteAllTasks: () => dispatch(completeAllTasks()),
-    callIncompleteAllTasks: () => dispatch(incompleteAllTasks()),
     callSetFilter: filter => dispatch(setFilter(filter)),
     callGetTasks: () => dispatch(getTasks()),
   }
