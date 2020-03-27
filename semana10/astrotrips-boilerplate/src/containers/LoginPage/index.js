@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
+import { routes } from '../Router';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styled from "styled-components";
-
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
-`;
+import * as LPS from "./LoginPageStyles";
+import SmallLogo from "../../Images/futurexlogo.png";
+import MidLogo from "../../Images/FutureXTitle.png";
+import { login } from "../Actions/Auth";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -29,35 +24,57 @@ class LoginPage extends Component {
     });
   };
 
-  mapDispatchToProps(dispatch){
-    return{
-      goToHomePage: () => dispatch(push('/HomePage')),
-    }
+  handleLogin = (event) =>{
+    event.preventDefault();
+
+    const { email, password } = this.state
+
+    this.props.login(email, password)
   }
 
   render() {
     const { email, password } = this.state;
 
     return (
-      <LoginWrapper>
-        <TextField
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button onClick={this.props.goToHomePage}>Login</Button>
-      </LoginWrapper>
+      <LPS.MainDiv>
+        
+          <LPS.CustomHeader>
+            <LPS.SmallLogo src={SmallLogo} onClick={this.props.goToHomePage} />
+            <LPS.MidLogo src={MidLogo}></LPS.MidLogo>
+          </LPS.CustomHeader>
+
+        <LPS.LoginWrapper onSubmit={this.handleLogin}>
+          <TextField
+            onChange={this.handleFieldChange}
+            name="email"
+            type="email"
+            label="E-mail"
+            required
+            value={email}
+          />
+
+          <TextField
+            onChange={this.handleFieldChange}
+            name="password"
+            type="password"
+            label="Password"
+            required
+            value={password}
+          />
+
+          <Button type="submit">Login</Button>
+
+        </LPS.LoginWrapper>
+      </LPS.MainDiv>
     );
   }
 }
 
-export default LoginPage;
+function mapDispatchToProps(dispatch) {
+  return {
+    goToHomePage: () => dispatch(push(routes.HomePage)),
+    login: (email, password) => dispatch(login(email, password)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage)
