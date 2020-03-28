@@ -12,6 +12,7 @@ export const CustomHeader = styled.div`
     background-color: rgb(230,230,230);
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 `
 
 export const SmallLogo = styled.img`

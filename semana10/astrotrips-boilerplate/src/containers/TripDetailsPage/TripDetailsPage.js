@@ -43,8 +43,6 @@ class TripDetailsPage extends Component {
 
         <TDPS.MainTitle>Detalhes da Viagem:</TDPS.MainTitle>
 
-        <p>Hello!</p>
-        {tripDetails && tripDetails.id}
         <h1>Viagem: {tripDetails && tripDetails.name}</h1>
         <h2>Duracao: {tripDetails && tripDetails.durationInDays} dias.</h2>
         <h3>Data: {tripDetails && tripDetails.date}</h3>
@@ -60,16 +58,6 @@ class TripDetailsPage extends Component {
         {tripDetails && tripDetails.candidates.map(candidate => (
           <li>{candidate.name} <Button onClick={() => this.props.setApprovedCandidate(tripDetails.id, candidate.id)} variant="contained" size="small" color="primary">Aprovar</Button> </li>
         ))}
-
-        <br />
-        <button onClick={() => console.log(tripDetails)}>Aaa</button>
-
-        {//Adicionar lista de candidatos aprovados aqui
-        }
-
-        {/* {
-          approved: []
-        } */}
 
 
         <TDPS.Footer>

@@ -70,10 +70,28 @@ const setTripDetailsID = (tripID) => ({
 
 export const setApprovedCandidate = (tripID, candidateID) => async (dispatch) =>{
 	try{
-		await axios.put(`${MainURL}/trips/${tripID}/candidates/${candidateID}/decide`)
+		await axios.put(`${MainURL}/trips/${tripID}/candidates/${candidateID}/decide`,
+		{ "approve" : true}, 
+		{headers: {auth: localStorage.getItem("token")},
+		})
+		alert("Candidato aprovado com sucesso!")
+		dispatch(getTripDetails(tripID))
 	}
 	catch(error){
 		console.log(error)
 		alert('Erro ao tentar aprovar o candidato')
+	}
+}
+
+export const submitNewTrip = (tripData) => async (dispatch) => {
+	try {
+		await axios.post(`${MainURL}/trips`, tripData,
+		{headers: {auth: localStorage.getItem("token")}}, )
+		
+		alert("Viagem criada com sucesso!")
+		dispatch(push(routes.ListTripsPage))
+	} catch (error) {
+		console.log(error)
+		alert('Erro ao tentar criar nova viagem')
 	}
 }

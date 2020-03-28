@@ -27,7 +27,6 @@ class ListTripsPage extends Component {
 
 
   render() {
-    console.log(this.props.trips)
     return (
       <LTPS.MainDiv>
 
@@ -35,6 +34,8 @@ class ListTripsPage extends Component {
           <LTPS.SmallLogo src={SmallLogo} onClick={this.props.goToHomePage}/>
           <LTPS.MidLogo src={MidLogo}></LTPS.MidLogo>
         </LTPS.CustomHeader>
+
+        <Button variant="contained" size="medium" color="primary" onClick={this.props.goToCreateTripPage}>Criar nova viagem</Button>
 
         <LTPS.MainTitle>Viagens Disponiveis:</LTPS.MainTitle>
 
@@ -76,6 +77,7 @@ function mapDispatchToProps(dispatch){
   return{
     goToHomePage: () => dispatch(push(routes.HomePage)),
     goToLoginPage: () => dispatch(push(routes.LoginPage)),
+    goToCreateTripPage: () => dispatch(push(routes.CreateTripPage)),
     getTrips: () => dispatch(getTrips()),
     goToTripDetailsPage: (tripID) => dispatch(setTripIdAndPush(tripID)),
   }

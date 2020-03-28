@@ -44,7 +44,6 @@ class ApplyPage extends Component {
     this.props.submitApplication(this.state.form)
   }
 
-
   render() {
     return (
       <APS.MainDiv>

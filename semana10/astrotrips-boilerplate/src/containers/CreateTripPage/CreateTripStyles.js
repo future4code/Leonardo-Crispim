@@ -44,3 +44,12 @@ export const FooterLogo = styled.img`
     height: 35px;
     width: 40px;
 `
+
+export const ApplicationFormContainer = styled.form`
+  place-content: center;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: 1rem auto;
+  `
