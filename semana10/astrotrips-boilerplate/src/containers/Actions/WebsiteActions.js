@@ -67,3 +67,13 @@ const setTripDetailsID = (tripID) => ({
 		tripID
 	}
 })
+
+export const setApprovedCandidate = (tripID, candidateID) => async (dispatch) =>{
+	try{
+		await axios.put(`${MainURL}/trips/${tripID}/candidates/${candidateID}/decide`)
+	}
+	catch(error){
+		console.log(error)
+		alert('Erro ao tentar aprovar o candidato')
+	}
+}

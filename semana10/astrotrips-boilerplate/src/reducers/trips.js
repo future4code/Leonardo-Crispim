@@ -22,6 +22,11 @@ const trips = (state = initialState, action) =>{
                 ...state,
                 selectedTripID: action.payload.tripID,
             }
+        case 'SET_APPROVED_CANDIDATE':
+            return {
+                ...state,
+                tripDetails: action.payload.candidateID,
+            }
     
         default:
             return state;
