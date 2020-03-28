@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import styled from "styled-components";
-import tasklist from './Reducers/tasklist';
 import TaskList from './Components/TaskList';
 
 class App extends React.Component {
