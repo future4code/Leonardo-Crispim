@@ -58,8 +58,6 @@ class HomePage extends Component {
           <Button onClick={this.props.goToApplyPage} variant="contained" color="primary" size="large">
             Candidate-se agora!
           </Button>
-          <button onClick={this.props.goToTripDetailsPage}>Trip Details Page</button>
-          <button onClick={this.props.goToListTripsPage}>List Trips Page</button>
         </HPS.FinalDiv>
 
       </HPS.MainDiv>
