@@ -9,10 +9,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { getTasks } from '../../actions/WebsiteActions';
 
 class Planner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
 
   componentDidMount(){
     this.props.getTasks()
   }
+
+  handleFieldChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
   render() {
     return (
