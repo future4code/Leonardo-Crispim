@@ -1,0 +1,20 @@
+{
+  "name": "projetobank",
+  "version": "0.0.1",
+  "description": "projeto de sistema bancario",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "tsc && node build/index.js --target es6"
+  },
+  "keywords": [
+    "typescript",
+    "javascript"
+  ],
+  "author": "thales milanezi",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.13.2",
+    "moment": "^2.24.0"
+  }
+}
