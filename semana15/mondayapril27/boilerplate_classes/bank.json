@@ -1,0 +1,9 @@
+[
+  {
+    "cpf": "42321321",
+    "name": "Wilson",
+    "age": 24,
+    "balance": 0,
+    "transactions": []
+  }
+]
