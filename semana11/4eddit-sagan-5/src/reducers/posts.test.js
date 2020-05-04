@@ -9,12 +9,12 @@ const mockStore = {
 
 describe("Posts Reducers", () => {
     test("SET_POSTS", () =>{
-        const mockText = "h"
-        const newSetPosts = setPosts(mockText)
-        const newStore = postsReducer(mockStore, newSetPosts)
+        const mockPost = "a"
+        const mockAction = setPosts(mockPost)
+        const newStore = postsReducer(mockStore, mockAction)
 
         expect(newStore.postList).toHaveLength(1)
-        expect(newStore.postList[0]).toBe(mockText)
+        expect(newStore.postList[0]).toBe(mockPost)
         expect(newStore.postList[0]).toBeDefined()
     })
 
