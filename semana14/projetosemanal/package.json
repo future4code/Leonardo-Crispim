@@ -1,0 +1,15 @@
+{
+  "name": "projetosemanal",
+  "version": "1.0.0",
+  "description": "Projeto Semanal (14)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "10reais": "tsc && node build/index.js --target es6"
+  },
+  "author": "Leo Crispim",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.13.2"
+  }
+}
