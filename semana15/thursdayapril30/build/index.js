@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Teacher_1 = require("./Teacher");
+const Student_1 = require("./Student");
+const NightMission_1 = require("./NightMission");
+const FileManager_1 = require("./FileManager");
+exports.student0 = new Student_1.Student("0", "Chase", "chasemail.com", "11/01/1980", "hitting on chicks");
+exports.student1 = new Student_1.Student("1", "Cameron", "cameronmail.com", "22/03/1984", "curing the sick");
+exports.student2 = new Student_1.Student("2", "Foreman", "foremanmail.com", "08/08/1977", "working");
+exports.student4 = new Student_1.Student("3", "Masters", "mastersmail.com", "11/01/2005", "being annoying");
+exports.student5 = new Student_1.Student("4", "Thirteen", "thirteenmail.com", "20/04/2001", "partying");
+exports.prof0 = new Teacher_1.Teacher("0", "House", "housemail.com", []);
+exports.prof1 = new Teacher_1.Teacher("1", "Wilson", "wilsonmail.com", []);
+exports.prof2 = new Teacher_1.Teacher("2", "Cuddy", "cuddymail.com", []);
+const mission1 = new NightMission_1.NightMission("001", "24/01/2001", "12/12/2001", 1, [], []);
+const fmMission = new FileManager_1.FileManager("missions.json");
+const readMission = fmMission.readFile();
+const fmStudent = new FileManager_1.FileManager("students.json");
+const readStudent = fmStudent.readFile();
+const fmTeacher = new FileManager_1.FileManager("teachers.json");
+const readTeacher = fmTeacher.readFile();
+const writeMission = fmMission.writeFile(mission1);
+//# sourceMappingURL=index.js.map
