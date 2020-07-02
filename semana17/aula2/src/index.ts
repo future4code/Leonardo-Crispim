@@ -5,6 +5,8 @@ import {CreateId} from "./services/CreateId";
 import {DataBase} from "./data/DataBase";
 import {Authenticator} from "./services/Authenticator";
 import { HashManager } from "./services/HashManager";
+import { stringify } from "querystring";
+import { userInfo } from "os";
 
 dotenv.config();
 
@@ -41,9 +43,9 @@ async function main(): Promise<void> {
 
             const db = new DataBase();
             await db.createUser(id, data.email, await new HashManager().hash(data.password))
-
+            const user = await db.getUserByEmail(data.email);
             const authenticator = new Authenticator();
-            const token = authenticator.generateToken({id})
+            const token = authenticator.generateToken({id, role: user.role})
             res.status(200).send({token})
         } catch (err) {
             res.status(400).send({
@@ -68,7 +70,6 @@ async function main(): Promise<void> {
     });*/
 
     app.post("/login", async (req: Request, res: Response) => {
-        console.log(req.body.password)
         try {
             if (!req.body.email || req.body.email.indexOf("@") === -1) {
                 throw new Error("Invalid email");
@@ -86,12 +87,9 @@ async function main(): Promise<void> {
             const user = {
                 email: user2.user_email,
                 id: user2.user_id,
-                password: user2.user_password
+                password: user2.user_password,
+                role: user2.role
             }
-            console.log(user.password)
-
-            console.log("user password " + user.password)
-            console.log("data password " + data.password)
 
             if (!hashCheck) {
                 throw new Error("Invalid password");
@@ -100,6 +98,7 @@ async function main(): Promise<void> {
             const authenticator = new Authenticator();
             const token = authenticator.generateToken({
                 id: user.id,
+                role: user.role
             });
             res.status(200).send({token})
         } catch (err) {
@@ -115,11 +114,12 @@ async function main(): Promise<void> {
             const authenticator = new Authenticator();
             const authenticationData = authenticator.getData(token);
 
+            if(authenticationData.role !== "normal"){
+                throw new Error("Unauthorized ");
+            }
+
             const userDb = new DataBase();
             const user = await userDb.getUserById(authenticationData.id);
-
-            console.log("user no endpoint user profile", user.user_id)
-            console.log("id", authenticationData.id)
 
             res.status(200).send({
                 id: user.user_id,
